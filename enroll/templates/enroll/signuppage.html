@@ -1,0 +1,27 @@
+{% extends 'enroll/base.html' %}
+{% load my_app_extra_filters %}
+{% load static %}
+
+{% block title %}Signup Page{% endblock title %}
+
+{% block pagedesc %}Enter the following credentials for <strong>Sign up</strong>.{% endblock pagedesc %}
+
+{% block form %}
+
+    <form action="" method="post" novalidate >
+        {% csrf_token %}
+         {% for fm in form %}
+            <div class="mb-3 p-2 bd-highlight">{{fm.label_tag}}{% if fm.field.required %}<span class="Isrequired" style="color: red;">*</span>{% endif %} {{fm|default:'None'}}<span class="Errr mt-0">{{fm.errors|striptags}}</span> 
+                
+            </div>
+        {% endfor %}
+        <div class="text-center my-3 ms-md-5 p-2 bd-highlight" > <input type="submit" value="Sign up" class="btn btn-outline-success  "> <a name="login" id="login" class="btn btn-outline-primary ms-md-3"
+                            href="{% url 'login' %}" role="button">login</a>
+                        </div>
+
+    </form>
+{% endblock form %}
+
+
+
+

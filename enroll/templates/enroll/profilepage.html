@@ -1,0 +1,46 @@
+{% extends 'enroll/base.html' %}
+{% load static %}
+{% load my_app_extra_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock title %}Dashboard </title>
+      <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css'%}"> 
+</head>
+<body>
+    {% block pagedesc %} Welcome to <strong>Dashboard</strong>.{% endblock pagedesc %}
+    {% block dashboarmssg %}
+                {% if messages %}
+                    {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible text-center mt-0" role="alert" >
+                {{message}}!!!
+                </div>
+                    {% endfor %}
+                {% endif %}
+    {% endblock dashboarmssg %}
+    {{name}}
+
+    {% block form %}
+         <form action="" method="post" novalidate >
+                {% csrf_token %}
+             {% for fm in form %}
+            <div class="mb-3 p-2 bd-highlight">{{fm.label_tag}}{% if fm.field.required %}<span class="Isrequired" style="color: red;">*</span>{% endif %} {{fm|add_class:"form-control"}}<span class="Errr mt-0">{{fm.errors|striptags}}</span> 
+                
+            </div>
+        {% endfor %}
+                 <div class="text-center my-3 ms-md-5 p-2 bd-highlight" > <input type="submit" value="Update Profile" class="btn btn-outline-success  "> <a name="login" id="login" class="btn btn-outline-primary ms-md-3"
+                            href="{% url 'logout' %}" role="button">logout</a>
+                        </div>
+    </form>
+    {% endblock form %}
+
+
+
+
+
+
+
+  
